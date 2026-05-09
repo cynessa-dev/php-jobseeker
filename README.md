@@ -1,7 +1,7 @@
 # JOBSEEKER [PHP]
 
-*Nature: Educational*
-*Started: May 09, 2026*
+*Nature: Educational*  
+*Started: May 09, 2026*  
 *Ended: ---*
 
 ---
