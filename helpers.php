@@ -45,4 +45,13 @@ function loadPartial($name) {
     return null;
 }
 
+/**
+ * Format salary
+ * @param string $salary
+ * @return string
+ */
+function formatSalary($salary) {
+    return "$" . number_format(floatval($salary), 0, '.', ',');
+}
+
 ?>
