@@ -1,5 +1,7 @@
 <?php
 
-echo "Hello, World!";
+require "../helpers.php";
+
+loadView("home");
 
 ?>
