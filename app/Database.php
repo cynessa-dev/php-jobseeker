@@ -4,7 +4,7 @@ class Database {
     public $conn;
 
     public function __construct($config) {
-        $dsn = "mysql:host{$config['host']};port={$config['port']};dbname={$config['dbname']}";
+        $dsn = "mysql:host={$config['host']};port={$config['port']};dbname={$config['dbname']}";
 
         $options = [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
