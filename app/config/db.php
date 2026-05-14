@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'host' => $_ENV['MYSQL_HOST'],
-    'port' => $_ENV['MYSQL_PORT'],
-    'dbname' => $_ENV['MYSQL_DBNAME'],
-    'username' => $_ENV['MYSQL_USERNAME'],
-    'password' => $_ENV['MYSQL_PASSWORD']
+    'host' => getenv('MYSQL_HOST'),
+    'port' => getenv('MYSQL_PORT'),
+    'dbname' => getenv('MYSQL_DBNAME'),
+    'username' => getenv('MYSQL_USERNAME'),
+    'password' => getenv('MYSQL_PASSWORD')
 ];
 
 ?>
