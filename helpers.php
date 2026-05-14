@@ -27,4 +27,22 @@ function loadView($name, $data = []) {
     }
 }
 
+/**
+ * Load partial
+ * @param string $name
+ * @return null
+ */
+function loadPartial($name) {
+    $partialPath = basePath("views/partials/{$name}.php");
+
+    // Ensures that the path exist before loading
+    if (file_exists($partialPath)) {
+        require $partialPath;
+    } else {
+        echo "Partial not found: {$name}";
+    }
+
+    return null;
+}
+
 ?>
