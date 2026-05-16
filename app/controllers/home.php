@@ -6,6 +6,11 @@ $db = new Database($config);
 
 $listings = $db->query("SELECT * FROM listings")->fetchAll();
 
+// Demo purpose only -> Adds dummy data for testing
+if (count($listings) === 0) {
+    require basePath('seed.php');
+}
+
 loadView("home", [
     "listings" => $listings
 ]);
