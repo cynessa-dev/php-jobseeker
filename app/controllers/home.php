@@ -1,9 +1,16 @@
 <?php
 
-$config = require basePath('config/db.php');
+session_start();
 
+if (!isset($_SESSION['user_id'])) {
+    header("Location: /auth/login");
+    exit();
+}
+
+$config = require basePath('config/db.php');
 $db = new Database($config);
 
+// Fetch all listings from the database for display on the home page
 $listings = $db->query("SELECT * FROM listings")->fetchAll();
 
 // Demo purpose only -> Adds dummy data for testing
