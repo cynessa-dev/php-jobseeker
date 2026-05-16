@@ -1,12 +1,5 @@
 <?php
 
-session_start();
-
-if (!isset($_SESSION['user_id'])) {
-    header("Location: /auth/login");
-    exit();
-}
-
 $config = require basePath('config/db.php');
 $db = new Database($config);
 
