@@ -18,13 +18,13 @@
 
 		<form method="POST">
 			<div class="mb-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-				<input type="text" name="first_name" placeholder="First Name"
+				<input type="text" name="first_name" placeholder="First Name" value="<?= htmlspecialchars($old['first_name'] ?? '') ?>"
 					class="w-full px-4 py-2 border rounded focus:outline-none" required />
-				<input type="text" name="last_name" placeholder="Last Name"
+				<input type="text" name="last_name" placeholder="Last Name" value="<?= htmlspecialchars($old['last_name'] ?? '') ?>"
 					class="w-full px-4 py-2 border rounded focus:outline-none" required />
 			</div>
 			<div class="mb-4">
-				<input type="email" name="email" placeholder="Email"
+				<input type="email" name="email" placeholder="Email" value="<?= htmlspecialchars($old['email'] ?? '') ?>"
 					class="w-full px-4 py-2 border rounded focus:outline-none" required />
 			</div>
 			<div class="mb-4">
