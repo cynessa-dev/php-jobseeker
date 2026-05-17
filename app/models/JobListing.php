@@ -18,14 +18,22 @@ class JobListing {
         $config = require basePath('config/db.php');
         $db = new Database($config);
 
-        $columns = implode(', ', self::$fields);
-        $placeholders = implode(', ', array_map(fn($f) => ":$f", self::$fields));
+        // Only insert the fields that are present in the provided data
+        $fields = array_values(array_intersect(self::$fields, array_keys($this->data)));
+
+        if (count($fields) === 0) {
+            throw new Exception('No valid fields provided to save listing.');
+        }
+
+        $columns = implode(', ', $fields);
+        $placeholders = implode(', ', array_map(fn($f) => ":$f", $fields));
 
         $query = "INSERT INTO listings ($columns) VALUES ($placeholders)";
         $stmt = $db->conn->prepare($query);
 
-        foreach (self::$fields as $field) {
-            $stmt->bindParam(":$field", $this->data[$field]);
+        foreach ($fields as $field) {
+            $value = $this->data[$field] ?? null;
+            $stmt->bindValue(":$field", $value);
         }
 
         try {
