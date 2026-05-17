@@ -4,8 +4,12 @@
             <a href="/">JobSeeker</a>
         </h1>
         <nav class="space-x-4">
-            <a href="auth/login" class="text-white hover:underline">Login</a>
-            <a href="auth/register" class="text-white hover:underline">Register</a>
+            <?php if (!isset($_SESSION['user_id'])): ?>
+                <a href="/auth/login" class="text-white hover:underline">Login</a>
+                <a href="/auth/register" class="text-white hover:underline">Register</a>
+            <?php else: ?>
+                <a href="/auth/login" class="text-white hover:underline">Logout</a>
+            <?php endif; ?>
             <a href="post-job"
                 class="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded hover:shadow-md transition duration-300"><i
                     class="fa fa-edit"></i> Post a Job</a>
