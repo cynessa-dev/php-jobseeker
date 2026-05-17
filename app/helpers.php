@@ -37,7 +37,14 @@ function loadPartial($name) {
 
     // Ensures that the path exist before loading
     if (file_exists($partialPath)) {
-        require $partialPath;
+        // allow passing variables to partials via optional second arg
+        // extract will create local variables inside this function scope
+        // but we want the partial to have access to them, so we use
+        // an isolated scope by including within a closure.
+        return (function($partialPath, $data = []) {
+            extract($data, EXTR_SKIP);
+            require $partialPath;
+        })($partialPath, func_get_args()[1] ?? []);
     } else {
         echo "Partial not found: {$name}";
     }
