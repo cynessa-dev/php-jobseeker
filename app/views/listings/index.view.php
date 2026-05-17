@@ -1,5 +1,7 @@
 <?= loadPartial("head"); ?>
 
+<?= loadPartial("navbar"); ?>
+
 <!-- Job Listings -->
 <section>
     <div class="container mx-auto p-4 mt-4">
