@@ -2,10 +2,10 @@
     <div class="overlay"></div>
     <div class="container mx-auto text-center z-10">
         <h2 class="alt-heading text-4xl text-white font-bold mb-4">Find Your Dream Job</h2>
-        <form class="mb-4 block mx-5 md:mx-auto">
-            <input type="text" name="keywords" placeholder="Keywords"
+        <form method="GET" action="/listings" class="mb-4 block mx-5 md:mx-auto">
+            <input type="text" name="keywords" placeholder="Keywords" value="<?= htmlspecialchars($_GET['keywords'] ?? '') ?>"
                 class="w-full md:w-auto mb-2 px-4 py-2 focus:outline-none" />
-            <input type="text" name="location" placeholder="Location"
+            <input type="text" name="location" placeholder="Location" value="<?= htmlspecialchars($_GET['location'] ?? '') ?>"
                 class="w-full md:w-auto mb-2 px-4 py-2 focus:outline-none" />
             <button class="w-full md:w-auto bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 focus:outline-none">
                 <i class="fa fa-search"></i> Search
