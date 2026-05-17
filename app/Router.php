@@ -35,10 +35,37 @@ class Router {
 
     public function route($uri, $method) {
         foreach ($this->routes as $route) {
-            if ($route['uri'] == $uri && $route['method'] == $method) {
+            if ($route['method'] !== $method) {
+                continue;
+            }
+
+            // Exact match
+            if ($route['uri'] === $uri) {
                 require basePath($route['controller']);
 
                 return;
+            }
+
+            // Parameterized route support, e.g. /listings/{id}
+            if (strpos($route['uri'], '{') !== false) {
+                $pattern = preg_replace_callback('/\{(\w+)\}/', function ($m) {
+                    return '(?P<' . $m[1] . '>[^/]+)';
+                }, $route['uri']);
+
+                $pattern = '#^' . $pattern . '$#';
+
+                if (preg_match($pattern, $uri, $matches)) {
+                    // expose named captures as $_GET params for controllers
+                    foreach ($matches as $k => $v) {
+                        if (!is_int($k)) {
+                            $_GET[$k] = $v;
+                        }
+                    }
+
+                    require basePath($route['controller']);
+
+                    return;
+                }
             }
         }
 
